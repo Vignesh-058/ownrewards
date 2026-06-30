@@ -1,0 +1,254 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  background: var(--background);
+}
+
+.auth-split {
+  display: flex;
+  width: 100%;
+}
+
+.auth-left {
+  flex: 1;
+  background: var(--primary-light);
+  background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-logo {
+  position: relative;
+  z-index: 10;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.auth-left-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 480px;
+  position: relative;
+  z-index: 10;
+}
+
+.auth-left-content h1 {
+  color: var(--text);
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 32px;
+}
+
+.auth-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.auth-feature-pill {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.auth-background-blobs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.auth-blob-1 {
+  width: 400px;
+  height: 400px;
+  background: rgba(111, 77, 230, 0.3);
+  bottom: -100px;
+  left: -100px;
+}
+
+.auth-blob-2 {
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.4);
+  top: -50px;
+  right: -50px;
+}
+
+.auth-right {
+  flex: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: var(--background);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 48px;
+  background: white;
+}
+
+.auth-card-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-card-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.auth-welcome-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(111, 77, 230, 0.1);
+  color: var(--primary);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.sparkle {
+  color: var(--primary-light);
+}
+
+.auth-card-header h2 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.form-group label svg {
+  color: var(--primary-light);
+}
+
+.form-group input {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  font-size: 0.95rem;
+  color: var(--text);
+  font-family: inherit;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(111, 77, 230, 0.1);
+}
+
+.forgot-password {
+  text-align: right;
+  font-size: 0.875rem;
+}
+
+.forgot-password a {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+.auth-submit-btn {
+  margin-top: 12px;
+}
+
+.auth-footer {
+  margin-top: 32px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-footer p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.auth-link {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+.auth-terms {
+  color: var(--text-light) !important;
+  font-size: 0.75rem !important;
+}
+
+@media (max-width: 992px) {
+  .auth-split {
+    flex-direction: column;
+  }
+  
+  .auth-left {
+    padding: 32px;
+    min-height: auto;
+  }
+  
+  .auth-left-content {
+    margin-top: 32px;
+  }
+  
+  .auth-right {
+    padding: 32px;
+  }
+  
+  .auth-card {
+    padding: 32px;
+  }
+}
+
+@media (max-width: 576px) {
+  .auth-left {
+    display: none;
+  }
+}

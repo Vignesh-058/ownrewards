@@ -1,0 +1,135 @@
+.notifications-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.notifications-page .header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.notifications-page .action-btn.danger {
+  color: var(--error);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.notifications-page .action-btn.danger:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notification-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.notification-card:hover {
+  background: var(--surface-hover);
+}
+
+.notification-card.unread {
+  background: var(--primary-50);
+  border-color: rgba(111, 77, 230, 0.2);
+}
+
+[data-theme='dark'] .notification-card.unread {
+  background: rgba(111, 77, 230, 0.05);
+}
+
+.notif-icon-wrapper {
+  background: var(--surface-hover);
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.notification-card.unread .notif-icon-wrapper {
+  background: var(--surface);
+}
+
+.notif-content {
+  flex: 1;
+}
+
+.notif-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.notif-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.notif-time {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+.notif-message {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.unread-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--primary);
+  border-radius: 50%;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.text-warning {
+  color: var(--warning);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+}
+
+.empty-icon {
+  color: var(--text-tertiary);
+  margin-bottom: 16px;
+}
+
+.empty-state h3 {
+  color: var(--text);
+  margin: 0 0 8px 0;
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+  margin: 0;
+}
