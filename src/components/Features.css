@@ -2,6 +2,29 @@
   background: var(--background);
 }
 
+.features .section-subtitle {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.features .bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.features .bento-span-4,
+.features .bento-span-5,
+.features .bento-span-7,
+.features .bento-span-8 {
+  grid-column: span 1;
+}
+
 .section-header {
   text-align: center;
   max-width: 700px;
@@ -24,13 +47,13 @@
 }
 
 .feature-card {
-  padding: 40px 30px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  background: var(--surface); /* Ensure contrast from background */
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
+  justify-content: flex-start;
+  height: 100%;
+  padding: 40px;
+  background: linear-gradient(145deg, var(--surface-glass), transparent);
+  border: 1px solid var(--border-light);
 }
 
 .feature-card:hover {
@@ -38,37 +61,46 @@
 }
 
 .feature-icon-wrapper {
-  width: 60px;
-  height: 60px;
-  border-radius: 16px;
-  background: var(--secondary);
-  color: var(--primary);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
-  transition: all 0.3s ease;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: var(--primary-50);
+  margin-bottom: 24px;
+  transition: transform 0.3s ease;
+}
+
+[data-theme='dark'] .feature-icon-wrapper {
+  background: rgba(111, 77, 230, 0.15);
 }
 
 .feature-card:hover .feature-icon-wrapper {
+  transform: scale(1.1) rotate(-5deg);
   background: var(--primary);
+}
+.feature-card:hover .feature-icon-svg {
   color: white;
-  transform: scale(1.1);
+}
+
+.feature-icon-svg {
+  color: var(--primary);
+  transition: color 0.3s ease;
 }
 
 .feature-title {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
 }
 
 .feature-description {
-  color: var(--text-light);
+  color: var(--text-secondary);
   line-height: 1.6;
-  font-size: 1rem;
 }
 
 @media (max-width: 768px) {
-  .features-grid {
+  .features .bento-grid {
     grid-template-columns: 1fr;
   }
 }

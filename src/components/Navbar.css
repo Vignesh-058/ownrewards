@@ -49,8 +49,16 @@
 }
 
 .nav-link.active {
-  color: var(--text);
+  color: var(--primary);
   font-weight: 600;
+  background: var(--primary-50);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+}
+
+[data-theme='dark'] .nav-link.active {
+  background: rgba(111, 77, 230, 0.15);
+  box-shadow: 0 0 10px rgba(111, 77, 230, 0.2);
 }
 
 .navbar-actions {
@@ -88,20 +96,20 @@
 .mobile-drawer {
   position: fixed;
   top: 0;
-  right: -100%;
+  left: -100%;
   width: 85vw;
   max-width: 400px;
   height: 100vh;
   background: var(--surface);
   z-index: 1001;
-  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+  transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
 }
 
 .mobile-drawer.open {
-  right: 0;
+  left: 0;
 }
 
 .mobile-drawer-header {
@@ -142,6 +150,13 @@
 .mobile-link.active {
   color: var(--primary);
   font-weight: 600;
+  background: var(--primary-50);
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+}
+
+[data-theme='dark'] .mobile-link.active {
+  background: rgba(111, 77, 230, 0.15);
 }
 
 .mobile-drawer-divider {

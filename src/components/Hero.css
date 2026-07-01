@@ -21,9 +21,9 @@
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.5;
-  animation: float 10s infinite ease-in-out;
+  filter: blur(100px);
+  opacity: 0.6;
+  animation: floatSlow 12s infinite ease-in-out;
 }
 
 .blob-1 {
@@ -31,7 +31,7 @@
   right: -5%;
   width: 50vw;
   height: 50vw;
-  background: radial-gradient(circle, rgba(111, 77, 230, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(111, 77, 230, 0.25) 0%, transparent 70%);
 }
 
 .blob-2 {
@@ -39,8 +39,8 @@
   left: -10%;
   width: 60vw;
   height: 60vw;
-  background: radial-gradient(circle, rgba(155, 127, 240, 0.2) 0%, transparent 70%);
-  animation-delay: -5s;
+  background: radial-gradient(circle, rgba(155, 127, 240, 0.3) 0%, transparent 70%);
+  animation-delay: -6s;
 }
 
 .hero-container {
@@ -342,5 +342,20 @@
 @media (max-width: 768px) {
   .hero-actions {
     flex-direction: column;
+  }
+  .hero-illustration {
+    height: 300px;
+  }
+  .hero-illustration .dashboard-main {
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-illustration {
+    height: 250px;
+  }
+  .hero-illustration .dashboard-main {
+    transform: translate(-50%, -50%) scale(0.45);
   }
 }

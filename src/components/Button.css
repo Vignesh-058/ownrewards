@@ -7,10 +7,15 @@
   font-weight: 600;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-normal);
   border: none;
   font-family: inherit;
   gap: 8px;
+  transform: translateZ(0);
+}
+
+.btn:active {
+  transform: scale(0.96);
 }
 
 .btn-primary {
@@ -21,7 +26,8 @@
 
 .btn-primary:hover {
   background: var(--primary-dark);
-  box-shadow: 0 6px 15px rgba(111, 77, 230, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(111, 77, 230, 0.4);
 }
 
 .btn-outline {
@@ -32,6 +38,8 @@
 
 .btn-outline:hover {
   background: rgba(111, 77, 230, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(111, 77, 230, 0.15);
 }
 
 .btn-glass {
@@ -43,7 +51,9 @@
 }
 
 .btn-glass:hover {
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--surface-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-icon {

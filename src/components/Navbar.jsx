@@ -35,11 +35,11 @@ const Navbar = () => {
   }, [location.pathname]);
 
   const navLinks = [
-    { name: 'Features', path: '#features' },
-    { name: 'Solutions', path: '#solutions' },
-    { name: 'Developers', path: '#developers' },
-    { name: 'Pricing', path: '#pricing' },
-    { name: 'Contact', path: '#contact' }
+    { name: 'Home', path: '/' },
+    { name: 'Features', path: '/features' },
+    { name: 'Pricing', path: '/pricing' },
+    { name: 'About', path: '/about' },
+    { name: 'Contact', path: '/contact' }
   ];
 
   return (
@@ -52,19 +52,13 @@ const Navbar = () => {
           
           <div className="navbar-desktop-links">
             {navLinks.map((link) => (
-              <a 
+              <Link 
                 key={link.name} 
-                href={link.path} 
-                className="nav-link"
-                onClick={(e) => {
-                  if (link.path.startsWith('#')) {
-                    e.preventDefault();
-                    document.querySelector(link.path)?.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
+                to={link.path} 
+                className={clsx('nav-link', location.pathname === link.path && 'active')}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -77,10 +71,10 @@ const Navbar = () => {
             >
               {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
             </button>
-            <Link to="/dashboard" className="hidden-mobile">
+            <Link to="/login" className="hidden-mobile">
               <Button variant="ghost">Log in</Button>
             </Link>
-            <Link to="/dashboard">
+            <Link to="/register">
               <Button variant="primary">Get Started</Button>
             </Link>
             
@@ -111,24 +105,18 @@ const Navbar = () => {
         </div>
         <div className="mobile-drawer-links">
           {navLinks.map((link) => (
-            <a 
+            <Link 
               key={link.name} 
-              href={link.path} 
-              className="mobile-link"
-              onClick={(e) => {
-                if (link.path.startsWith('#')) {
-                  e.preventDefault();
-                  document.querySelector(link.path)?.scrollIntoView({ behavior: 'smooth' });
-                  setMobileMenuOpen(false);
-                }
-              }}
+              to={link.path} 
+              className={clsx('mobile-link', location.pathname === link.path && 'active')}
+              onClick={() => setMobileMenuOpen(false)}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
           <div className="mobile-drawer-divider" />
-          <Link to="/dashboard" className="mobile-link">Log in</Link>
-          <Link to="/contact" className="mobile-link">Contact Support</Link>
+          <Link to="/login" className="mobile-link" onClick={() => setMobileMenuOpen(false)}>Log in</Link>
+          <Link to="/contact" className="mobile-link" onClick={() => setMobileMenuOpen(false)}>Contact Support</Link>
         </div>
       </div>
     </>

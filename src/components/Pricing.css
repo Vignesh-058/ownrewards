@@ -3,6 +3,30 @@
   padding-bottom: 120px;
 }
 
+.text-sm { font-size: 0.875rem; }
+.text-xs { font-size: 0.75rem; }
+.font-semibold { font-weight: 600; }
+.transition-colors { transition: color 0.3s ease; }
+.bg-primary\/20 { background: rgba(111, 77, 230, 0.2); }
+.px-2 { padding-left: 8px; padding-right: 8px; }
+.py-0\.5 { padding-top: 2px; padding-bottom: 2px; }
+.rounded-full { border-radius: 9999px; }
+.w-16 { width: 64px; }
+.h-8 { height: 32px; }
+.w-6 { width: 24px; }
+.h-6 { height: 24px; }
+.p-1 { padding: 4px; }
+.shadow-md { box-shadow: var(--shadow-md); }
+.cursor-pointer { cursor: pointer; }
+.mb-12 { margin-bottom: 48px; }
+.mb-16 { margin-bottom: 64px; }
+.mt-auto { margin-top: auto; }
+.pt-6 { padding-top: 24px; }
+.border-t { border-top-width: 1px; border-top-style: solid; }
+.border-border\/50 { border-color: rgba(228, 228, 231, 0.5); }
+[data-theme='dark'] .border-border\/50 { border-color: rgba(39, 39, 42, 0.5); }
+.bg-surface { background: var(--surface); }
+
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -13,32 +37,23 @@
 }
 
 .pricing-card {
-  background: var(--surface);
+  background: linear-gradient(145deg, var(--surface), var(--background));
   border-radius: 24px;
   padding: 40px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-light);
   display: flex;
   flex-direction: column;
   position: relative;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-}
-
-.pricing-card:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  border-color: var(--primary-light);
 }
 
 .pricing-card.highlighted {
-  border: 2px solid transparent;
-  background: linear-gradient(var(--surface), var(--surface)) padding-box,
-              linear-gradient(135deg, var(--primary), var(--primary-light)) border-box;
+  border: 1px solid rgba(111, 77, 230, 0.3);
+  background: linear-gradient(145deg, var(--surface), rgba(111, 77, 230, 0.05));
   box-shadow: var(--shadow-purple);
   padding: 40px;
   z-index: 1;
   transform: scale(1.05);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .pricing-card.highlighted:hover {
@@ -52,13 +67,14 @@
   left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(135deg, var(--primary), var(--primary-light));
-  color: var(--surface);
+  color: white;
   padding: 4px 16px;
   border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  box-shadow: 0 4px 10px rgba(111, 77, 230, 0.3);
 }
 
 .plan-name {
@@ -68,7 +84,7 @@
 
 .plan-description {
   font-size: 0.875rem;
-  color: var(--text-light);
+  color: var(--text-secondary);
   margin-bottom: 24px;
   min-height: 40px;
 }
@@ -88,7 +104,7 @@
 }
 
 .price-period {
-  color: var(--text-light);
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
@@ -125,7 +141,10 @@
   
   .pricing-card.highlighted {
     padding: 40px;
+    transform: scale(1);
+  }
+  
+  .pricing-card.highlighted:hover {
+    transform: translateY(-8px);
   }
 }
-
-/* Force Vite HMR reload */

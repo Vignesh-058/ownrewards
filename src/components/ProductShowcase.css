@@ -2,6 +2,10 @@
   background: var(--surface);
   overflow: hidden;
 }
+.perspective-1000 { perspective: 1000px; }
+.transform-style-3d { transform-style: preserve-3d; transition: transform 0.3s ease; }
+.shadow-2xl { box-shadow: var(--shadow-xl); }
+.border-white\/20 { border-color: rgba(255, 255, 255, 0.2); }
 
 .showcase-row {
   display: flex;

@@ -1,5 +1,6 @@
-import React from 'react';
-import { Star } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import GlassCard from './GlassCard';
 import './Testimonials.css';
 
@@ -31,31 +32,62 @@ const Testimonials = () => {
     }
   ];
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const next = () => setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  const prev = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+
+  useEffect(() => {
+    const timer = setInterval(next, 8000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="testimonials">
-      <div className="container">
-        <h2 className="section-title text-center mb-60">Loved by <span className="text-primary">thousands</span></h2>
+    <section className="testimonials relative overflow-hidden">
+      <div className="container relative z-10">
+        <h2 className="section-title text-center mb-8">Loved by <span className="gradient-text">thousands</span></h2>
         
-        <div className="testimonials-grid">
-          {testimonials.map((testimonial, index) => (
-            <GlassCard key={index} className="testimonial-card">
-              <div className="rating">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} size={16} fill="var(--primary)" color="var(--primary)" />
-                ))}
-              </div>
-              <p className="testimonial-content">"{testimonial.content}"</p>
-              <div className="testimonial-author">
-                <img src={testimonial.avatar} alt={testimonial.name} className="author-avatar" />
-                <div className="author-info">
-                  <div className="author-name">{testimonial.name}</div>
-                  <div className="author-role">{testimonial.role}, {testimonial.company}</div>
+        <div className="carousel-container max-w-4xl mx-auto relative mt-12">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
+            >
+              <GlassCard className="testimonial-card">
+                <div className="rating">
+                  {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                    <Star key={i} size={20} fill="var(--primary)" color="var(--primary)" />
+                  ))}
                 </div>
-              </div>
-            </GlassCard>
-          ))}
+                <p className="testimonial-content">"{testimonials[currentIndex].content}"</p>
+                <div className="testimonial-author">
+                  <img src={testimonials[currentIndex].avatar} alt={testimonials[currentIndex].name} className="author-avatar" />
+                  <div className="author-info">
+                    <div className="author-name">{testimonials[currentIndex].name}</div>
+                    <div className="author-role">{testimonials[currentIndex].role}, {testimonials[currentIndex].company}</div>
+                  </div>
+                </div>
+              </GlassCard>
+            </motion.div>
+          </AnimatePresence>
+          
+          <div className="carousel-controls mt-8 flex justify-center gap-4">
+            <button onClick={prev} className="btn-icon carousel-btn hover-lift"><ChevronLeft size={24} /></button>
+            <div className="flex gap-2 items-center">
+              {testimonials.map((_, i) => (
+                <div key={i} className={`dot-indicator ${i === currentIndex ? 'active' : ''}`} />
+              ))}
+            </div>
+            <button onClick={next} className="btn-icon carousel-btn hover-lift"><ChevronRight size={24} /></button>
+          </div>
         </div>
       </div>
+      
+      {/* Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[500px] bg-primary opacity-10 blur-[150px] rounded-[100%] pointer-events-none -z-10" />
     </section>
   );
 };
