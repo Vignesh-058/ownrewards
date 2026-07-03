@@ -34,7 +34,7 @@ const Differentiators = () => {
   return (
     <section
       id="differentiators"
-      style={{ padding: '100px 0', background: 'var(--bg)' }}
+      style={{ padding: '60px 0', background: 'var(--bg)' }}
       aria-labelledby="differentiators-heading"
     >
       <div className="container">

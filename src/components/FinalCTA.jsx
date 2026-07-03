@@ -9,7 +9,7 @@ const FinalCTA = () => {
     <section
       id="cta-banner"
       style={{
-        padding: '160px 0',
+        padding: '80px 0',
         position: 'relative',
         overflow: 'hidden',
         background: 'var(--background)'

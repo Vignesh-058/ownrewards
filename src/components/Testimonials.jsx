@@ -31,10 +31,10 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="testimonials relative overflow-hidden" id="testimonials" style={{ padding: '140px 0', background: 'var(--background)' }}>
+    <section className="testimonials relative overflow-hidden" id="testimonials" style={{ padding: '60px 0', background: 'var(--background)' }}>
       <div className="container relative z-10">
         
-        <div className="section-header text-center mb-16" style={{ marginBottom: '80px' }}>
+        <div className="section-header text-center mb-16" style={{ marginBottom: '60px' }}>
           <h2 className="h-section" style={{ marginBottom: '16px' }}>Trusted by forward-thinking brands.</h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '20px', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>
             See how top companies are using ownRewards to drive real, measurable revenue growth.

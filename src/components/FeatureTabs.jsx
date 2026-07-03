@@ -104,7 +104,7 @@ const FeatureTabs = () => {
   return (
     <section
       id="bento-features"
-      style={{ padding: '140px 0', background: 'var(--background)' }}
+      style={{ padding: '60px 0', background: 'var(--background)' }}
       aria-labelledby="bento-heading"
     >
       <div className="container">

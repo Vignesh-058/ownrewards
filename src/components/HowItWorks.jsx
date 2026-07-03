@@ -93,10 +93,10 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section id="how-it-works-preview" style={{ padding: '140px 0', background: 'var(--background)' }}>
+    <section id="how-it-works-preview" style={{ padding: '60px 0', background: 'var(--background)' }}>
       <div className="container">
         
-        <div className="section-header text-center" style={{ marginBottom: '80px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
           <h2 className="h-section" style={{ marginBottom: '16px' }}>How it actually works</h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '20px', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>
             From setup to scaling, everything is designed to be fully autonomous.

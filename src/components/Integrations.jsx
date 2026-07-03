@@ -18,7 +18,7 @@ const Integrations = () => {
   return (
     <section
       id="integrations"
-      style={{ padding: '140px 0', background: 'var(--background)', position: 'relative', overflow: 'hidden' }}
+      style={{ padding: '60px 0', background: 'var(--background)', position: 'relative', overflow: 'hidden' }}
       aria-labelledby="integrations-heading"
     >
       {/* Background Mesh Gradient */}

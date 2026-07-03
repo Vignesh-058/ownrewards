@@ -45,13 +45,14 @@ const Hero = () => {
       id="hero" 
       ref={containerRef}
       style={{
-        minHeight: '100vh',
+        minHeight: '80vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
-        paddingTop: '60px'
+        paddingTop: '120px',
+        paddingBottom: '80px'
       }}
     >
       {/* 3D Background Elements */}
