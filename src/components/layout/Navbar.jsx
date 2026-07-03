@@ -61,7 +61,7 @@ export const Navbar = () => {
             <Logo size={28} />
           </Link>
           
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }} className="max-md:hidden">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }} className="desktop-only">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
@@ -97,7 +97,7 @@ export const Navbar = () => {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div className="max-md:hidden">
+            <div className="desktop-only">
               <Link to="/login" style={{ textDecoration: 'none', color: 'var(--text)', fontWeight: 600, fontSize: '15px', marginRight: '16px' }}>Sign In</Link>
               <Link to="/register" style={{ textDecoration: 'none' }}>
                 <Button variant="primary" style={{ padding: '10px 24px', fontSize: '15px' }}>Start Free &rarr;</Button>
@@ -105,7 +105,7 @@ export const Navbar = () => {
             </div>
             
             <button 
-              className="md:hidden"
+              className="mobile-only"
               style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', padding: '8px', color: 'var(--text)' }}
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open Menu"

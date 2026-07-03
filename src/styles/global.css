@@ -200,3 +200,11 @@ body {
 .animate-marquee:hover { 
   animation-play-state: paused; 
 }
+
+/* Responsive Utilities */
+@media (min-width: 968px) {
+  .mobile-only { display: none !important; }
+}
+@media (max-width: 967px) {
+  .desktop-only { display: none !important; }
+}
