@@ -33,29 +33,41 @@ const UseCasesHero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
         >
-          <div style={{
-            display: 'inline-block',
-            background: 'rgba(99,102,241,0.1)', color: 'var(--primary)',
-            border: '1px solid rgba(99,102,241,0.25)', borderRadius: '20px',
-            padding: '6px 18px', fontSize: '0.8125rem', fontWeight: 700,
-            textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '24px',
-          }}>
-            Use Cases
-          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            style={{ marginBottom: '24px' }}
+          >
+            <span style={{
+              background: 'rgba(109,74,255,0.1)', 
+              color: 'var(--primary)', 
+              padding: '8px 20px', 
+              borderRadius: '99px', 
+              fontSize: '14px', 
+              fontWeight: 700,
+              border: '1px solid rgba(109,74,255,0.25)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em'
+            }}>
+              Use Cases
+            </span>
+          </motion.div>
 
           <h1
             id="usecases-h1"
             className="hero-title"
-            style={{ fontSize: '3.25rem', fontWeight: 800, lineHeight: 1.15, marginBottom: '24px' }}
+            style={{ fontSize: 'var(--font-hero)', fontWeight: 900, lineHeight: 1.15, marginBottom: '24px', letterSpacing: '-0.03em' }}
           >
             Built for the way your{' '}
             <span className="gradient-text">customers shop.</span>
           </h1>
 
           <p style={{
-            color: 'var(--muted)', fontSize: '1.1875rem', maxWidth: '580px',
-            margin: '0 auto 48px', lineHeight: 1.7,
+            color: 'var(--text-secondary)', fontSize: '1.25rem', maxWidth: '640px',
+            margin: '0 auto 48px', lineHeight: 1.6,
           }}>
             ownRewards adapts to different industries through intelligent loyalty
             automation, campaigns, referrals, and analytics.

@@ -82,51 +82,54 @@ const KPICounter = ({ kpi, index }) => {
   const [ref, count] = useCounter(kpi.target, 1800);
 
   return (
-    <motion.div
-      ref={ref}
-      id={kpi.id}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, type: 'spring', stiffness: 100 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -6 }}
-      style={{
-        background: 'var(--surface)',
-        border: '1px solid var(--border)',
-        borderRadius: '20px',
-        padding: '28px',
-        textAlign: 'center',
-        cursor: 'default',
-        transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = `0 12px 40px ${kpi.color}22`;
-        e.currentTarget.style.borderColor = `${kpi.color}55`;
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = 'none';
-        e.currentTarget.style.borderColor = 'var(--border)';
-      }}
-    >
+    <motion.div style={{ perspective: '1000px' }}>
+      <motion.div
+        ref={ref}
+        id={kpi.id}
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.1, type: 'spring', stiffness: 100 }}
+        viewport={{ once: true }}
+        whileHover={{ rotateY: 5, rotateX: -5, scale: 1.05 }}
+        style={{
+          padding: '32px',
+          textAlign: 'center',
+          cursor: 'default',
+          transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
+          position: 'relative',
+          overflow: 'hidden',
+          transformStyle: 'preserve-3d'
+        }}
+        className="glass-panel"
+        onMouseEnter={(e) => {
+          e.currentTarget.style.boxShadow = `0 20px 50px ${kpi.color}25`;
+          e.currentTarget.style.borderColor = `${kpi.color}66`;
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.boxShadow = 'none';
+          e.currentTarget.style.borderColor = 'var(--border)';
+        }}
+      >
       {/* Top glow stripe */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
         background: `linear-gradient(90deg, ${kpi.color}00, ${kpi.color}, ${kpi.color}00)`,
       }} />
 
-      <div style={{ fontSize: '2rem', marginBottom: '12px' }} aria-hidden="true">{kpi.icon}</div>
-      <div style={{ fontSize: '0.8125rem', color: 'var(--muted)', fontWeight: 600, marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-        {kpi.label}
+      <div style={{ transform: 'translateZ(30px)' }}>
+        <div style={{ fontSize: '2rem', marginBottom: '12px' }} aria-hidden="true">{kpi.icon}</div>
+        <div style={{ fontSize: '0.8125rem', color: 'var(--muted)', fontWeight: 600, marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          {kpi.label}
+        </div>
+        <div
+          style={{ fontSize: '2.75rem', fontWeight: 900, color: kpi.color, lineHeight: 1, marginBottom: '8px' }}
+          aria-label={`${kpi.label}: ${kpi.prefix}${count.toLocaleString()}${kpi.suffix}`}
+        >
+          {kpi.prefix}{count.toLocaleString()}{kpi.suffix}
+        </div>
+        <div style={{ fontSize: '0.8125rem', color: 'var(--muted)' }}>{kpi.sub}</div>
       </div>
-      <div
-        style={{ fontSize: '2.75rem', fontWeight: 900, color: kpi.color, lineHeight: 1, marginBottom: '8px' }}
-        aria-label={`${kpi.label}: ${kpi.prefix}${count.toLocaleString()}${kpi.suffix}`}
-      >
-        {kpi.prefix}{count.toLocaleString()}{kpi.suffix}
-      </div>
-      <div style={{ fontSize: '0.8125rem', color: 'var(--muted)' }}>{kpi.sub}</div>
+      </motion.div>
     </motion.div>
   );
 };

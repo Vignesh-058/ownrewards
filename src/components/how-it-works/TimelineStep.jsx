@@ -143,6 +143,7 @@ const TimelineStep = ({ step, index, isLeft }) => {
         padding: '0 40px 60px 0',
         display: 'flex',
         justifyContent: 'flex-end',
+        perspective: '1000px'
       }}>
         {isEven ? (
           <motion.div
@@ -152,18 +153,22 @@ const TimelineStep = ({ step, index, isLeft }) => {
             viewport={{ once: true, margin: '-60px' }}
             style={{
               maxWidth: '380px', width: '100%',
-              background: 'var(--surface)', border: '1px solid var(--border)',
-              borderRadius: '20px', padding: '28px',
-              boxShadow: '0 4px 24px rgba(0,0,0,0.04)',
+              padding: '32px',
               transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
+              transformStyle: 'preserve-3d'
             }}
-            whileHover={{ boxShadow: `0 12px 40px ${color}22`, borderColor: `${color}55` }}
+            className="glass-panel"
+            whileHover={{ scale: 1.02, rotateY: 3, rotateX: 2, boxShadow: `0 20px 40px ${color}33`, borderColor: `${color}66` }}
           >
-            <div style={{ fontSize: '2rem', marginBottom: '12px' }} aria-hidden="true">{step.icon}</div>
-            <HighlightPill text={step.pill} color={color} />
-            <h3 style={{ fontSize: '1.125rem', fontWeight: 700, marginBottom: '10px', lineHeight: 1.3 }}>{step.title}</h3>
-            <p style={{ color: 'var(--muted)', fontSize: '0.9rem', lineHeight: 1.7, margin: 0 }}>{step.body}</p>
-            <StepVisual visual={step.visual} />
+            <div style={{ transform: 'translateZ(20px)' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '12px' }} aria-hidden="true">{step.icon}</div>
+              <HighlightPill text={step.pill} color={color} />
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '12px', lineHeight: 1.3 }}>{step.title}</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6, margin: 0 }}>{step.body}</p>
+            </div>
+            <div style={{ transform: 'translateZ(30px)' }}>
+              <StepVisual visual={step.visual} />
+            </div>
           </motion.div>
         ) : <div />}
       </div>
@@ -193,6 +198,7 @@ const TimelineStep = ({ step, index, isLeft }) => {
         padding: '0 0 60px 40px',
         display: 'flex',
         justifyContent: 'flex-start',
+        perspective: '1000px'
       }}>
         {!isEven ? (
           <motion.div
@@ -202,18 +208,22 @@ const TimelineStep = ({ step, index, isLeft }) => {
             viewport={{ once: true, margin: '-60px' }}
             style={{
               maxWidth: '380px', width: '100%',
-              background: 'var(--surface)', border: '1px solid var(--border)',
-              borderRadius: '20px', padding: '28px',
-              boxShadow: '0 4px 24px rgba(0,0,0,0.04)',
+              padding: '32px',
               transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
+              transformStyle: 'preserve-3d'
             }}
-            whileHover={{ boxShadow: `0 12px 40px ${color}22`, borderColor: `${color}55` }}
+            className="glass-panel"
+            whileHover={{ scale: 1.02, rotateY: -3, rotateX: 2, boxShadow: `0 20px 40px ${color}33`, borderColor: `${color}66` }}
           >
-            <div style={{ fontSize: '2rem', marginBottom: '12px' }} aria-hidden="true">{step.icon}</div>
-            <HighlightPill text={step.pill} color={color} />
-            <h3 style={{ fontSize: '1.125rem', fontWeight: 700, marginBottom: '10px', lineHeight: 1.3 }}>{step.title}</h3>
-            <p style={{ color: 'var(--muted)', fontSize: '0.9rem', lineHeight: 1.7, margin: 0 }}>{step.body}</p>
-            <StepVisual visual={step.visual} />
+            <div style={{ transform: 'translateZ(20px)' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '12px' }} aria-hidden="true">{step.icon}</div>
+              <HighlightPill text={step.pill} color={color} />
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '12px', lineHeight: 1.3 }}>{step.title}</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6, margin: 0 }}>{step.body}</p>
+            </div>
+            <div style={{ transform: 'translateZ(30px)' }}>
+              <StepVisual visual={step.visual} />
+            </div>
           </motion.div>
         ) : <div />}
       </div>

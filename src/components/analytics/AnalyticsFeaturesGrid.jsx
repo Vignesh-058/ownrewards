@@ -145,7 +145,7 @@ const AnalyticsFeaturesGrid = () => (
         </p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', perspective: '1000px' }}>
         {features.map((f, i) => (
           <motion.article
             key={f.id}
@@ -154,28 +154,33 @@ const AnalyticsFeaturesGrid = () => (
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.08, type: 'spring', stiffness: 120 }}
             viewport={{ once: true, margin: '-40px' }}
-            whileHover={{ y: -6 }}
+            whileHover={{ scale: 1.02, rotateY: 5, rotateX: -5 }}
             aria-label={f.title}
             style={{
-              background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '16px',
               padding: '24px', cursor: 'default',
               transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
               position: 'relative', overflow: 'hidden',
+              transformStyle: 'preserve-3d'
             }}
+            className="glass-panel"
             onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = '0 12px 40px rgba(99,102,241,0.12)';
-              e.currentTarget.style.borderColor = 'rgba(99,102,241,0.4)';
+              e.currentTarget.style.boxShadow = '0 20px 50px rgba(99,102,241,0.2)';
+              e.currentTarget.style.borderColor = 'rgba(99,102,241,0.6)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.boxShadow = 'none';
               e.currentTarget.style.borderColor = 'var(--border)';
             }}
           >
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg, #6366F100, #6366F1, #6366F100)', opacity: 0.5 }} />
-            <div style={{ fontSize: '1.75rem', marginBottom: '14px' }} aria-hidden="true">{f.icon}</div>
-            <h3 style={{ fontSize: '1.0625rem', fontWeight: 700, marginBottom: '10px' }}>{f.title}</h3>
-            <p style={{ color: 'var(--muted)', fontSize: '0.875rem', lineHeight: 1.65, margin: 0 }}>{f.body}</p>
-            <CardVisual type={f.visual} />
+            <div style={{ transform: 'translateZ(20px)' }}>
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg, #6366F100, #6366F1, #6366F100)', opacity: 0.5 }} />
+              <div style={{ fontSize: '1.75rem', marginBottom: '14px' }} aria-hidden="true">{f.icon}</div>
+              <h3 style={{ fontSize: '1.125rem', fontWeight: 800, marginBottom: '10px' }}>{f.title}</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.65, margin: 0 }}>{f.body}</p>
+            </div>
+            <div style={{ transform: 'translateZ(30px)' }}>
+              <CardVisual type={f.visual} />
+            </div>
           </motion.article>
         ))}
       </div>

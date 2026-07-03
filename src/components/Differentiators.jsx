@@ -56,6 +56,7 @@ const Differentiators = () => {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
             gap: '28px',
+            perspective: '1200px'
           }}
         >
           {cards.map((card, i) => (
@@ -65,17 +66,28 @@ const Differentiators = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.15, type: 'spring', stiffness: 100 }}
               viewport={{ once: true, margin: '-50px' }}
+              whileHover={{ scale: 1.02, rotateY: i === 0 ? 5 : i === 2 ? -5 : 0, rotateX: 2 }}
+              style={{
+                height: '100%',
+                padding: '32px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px',
+                transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
+                transformStyle: 'preserve-3d',
+                cursor: 'default'
+              }}
+              className="glass-panel"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = `0 20px 50px rgba(99,102,241,0.2)`;
+                e.currentTarget.style.borderColor = `rgba(99,102,241,0.5)`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.borderColor = 'var(--border)';
+              }}
             >
-              <GlassCard
-                style={{
-                  height: '100%',
-                  padding: '32px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '20px',
-                  transition: 'box-shadow 0.3s ease, transform 0.3s ease',
-                }}
-              >
+              <div style={{ transform: 'translateZ(20px)', flexGrow: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 {/* Icon */}
                 <div
                   style={{
@@ -96,11 +108,14 @@ const Differentiators = () => {
 
                 {/* Content */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', flexGrow: 1 }}>
-                  <h3 style={{ fontSize: '1.375rem', fontWeight: 700, margin: 0 }}>{card.title}</h3>
-                  <p style={{ color: 'var(--muted)', lineHeight: 1.7, margin: 0, fontSize: '0.9375rem' }}>
+                  <h3 style={{ fontSize: '1.375rem', fontWeight: 800, margin: 0, letterSpacing: '-0.02em' }}>{card.title}</h3>
+                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, margin: 0, fontSize: '0.95rem' }}>
                     {card.body}
                   </p>
                 </div>
+              </div>
+
+              <div style={{ transform: 'translateZ(30px)' }}>
 
                 {/* Tiers visual for card 2 */}
                 {card.tiers && (
@@ -152,7 +167,7 @@ const Differentiators = () => {
                     ))}
                   </div>
                 )}
-              </GlassCard>
+              </div>
             </motion.div>
           ))}
         </div>

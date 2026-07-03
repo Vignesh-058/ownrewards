@@ -57,7 +57,8 @@ const ValuesSection = () => (
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-        gap: '20px',
+        gap: '24px',
+        perspective: '1200px'
       }}>
         {values.map((val, i) => (
           <motion.article
@@ -67,20 +68,20 @@ const ValuesSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1, type: 'spring', stiffness: 120 }}
             viewport={{ once: true }}
-            whileHover={{ y: -6 }}
+            whileHover={{ scale: 1.02, rotateY: 5, rotateX: -5 }}
             aria-label={val.title}
             style={{
-              background: 'var(--surface)',
-              border: '1px solid var(--border)',
-              borderRadius: '20px',
               padding: '28px',
               cursor: 'default',
               transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
               position: 'relative',
               overflow: 'hidden',
+              transformStyle: 'preserve-3d',
+              marginTop: i % 2 !== 0 ? '30px' : '0px'
             }}
+            className="glass-panel"
             onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = `0 12px 40px ${val.color}22`;
+              e.currentTarget.style.boxShadow = `0 20px 50px ${val.color}25`;
               e.currentTarget.style.borderColor = `${val.color}55`;
             }}
             onMouseLeave={(e) => {
@@ -88,6 +89,7 @@ const ValuesSection = () => (
               e.currentTarget.style.borderColor = 'var(--border)';
             }}
           >
+            <div style={{ transform: 'translateZ(20px)' }}>
             {/* Glow stripe */}
             <div style={{
               position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
@@ -104,12 +106,13 @@ const ValuesSection = () => (
               {val.icon}
             </div>
 
-            <h3 style={{ fontSize: '1.125rem', fontWeight: 800, marginBottom: '10px', color: val.color }}>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '10px', color: val.color }}>
               {val.title}
             </h3>
-            <p style={{ color: 'var(--muted)', fontSize: '0.9375rem', lineHeight: 1.7, margin: 0 }}>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.7, margin: 0 }}>
               {val.body}
             </p>
+            </div>
           </motion.article>
         ))}
       </div>

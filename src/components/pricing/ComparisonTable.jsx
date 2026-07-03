@@ -55,14 +55,14 @@ const ComparisonTable = () => (
           Every capability, clearly listed.
         </p>
 
-        <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', borderRadius: '16px', border: '1px solid var(--border)' }}>
+        <div className="glass-panel" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', borderRadius: '16px', border: '1px solid var(--border)', background: 'rgba(255, 255, 255, 0.02)', backdropFilter: 'blur(30px)' }}>
           <table
             role="table"
             aria-label="Feature comparison between Starter, Growth, and Enterprise plans"
             style={{ width: '100%', borderCollapse: 'collapse', minWidth: '480px' }}
           >
             <thead>
-              <tr style={{ background: 'var(--bg)' }}>
+              <tr style={{ background: 'transparent' }}>
                 <th scope="col" style={{ padding: '16px 20px', textAlign: 'left', fontWeight: 700, fontSize: '0.875rem', color: 'var(--muted)', borderBottom: '1px solid var(--border)', minWidth: '180px' }}>
                   Feature
                 </th>

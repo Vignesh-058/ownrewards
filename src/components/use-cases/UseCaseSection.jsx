@@ -146,9 +146,15 @@ const UseCaseSection = ({
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
             viewport={{ once: true }}
-            style={{ direction: 'ltr' }}
+            style={{ direction: 'ltr', perspective: '1200px' }}
           >
-            <Mock />
+            <motion.div
+              whileHover={{ rotateY: reverse ? 4 : -4, rotateX: 2, scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <Mock />
+            </motion.div>
           </motion.div>
         </div>
       </div>

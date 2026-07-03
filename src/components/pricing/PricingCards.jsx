@@ -63,27 +63,27 @@ const PricingCard = ({ plan, index }) => {
   const isGrowth = plan.id === 'plan-growth';
 
   return (
-    <motion.div
-      id={plan.id}
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.12, type: 'spring', stiffness: 100 }}
-      viewport={{ once: true }}
-      whileHover={{ y: isGrowth ? -4 : -6 }}
-      style={{
-        background: 'var(--surface)',
-        backdropFilter: 'blur(30px)',
-        borderRadius: '24px',
-        padding: '32px 28px',
-        display: 'flex', flexDirection: 'column',
-        position: 'relative',
-        border: isGrowth ? '1px solid rgba(109,74,255,0.8)' : '1px solid var(--border)',
-        boxShadow: isGrowth ? '0 0 40px rgba(109,74,255,0.3), 0 8px 32px rgba(0,0,0,0.08)' : 'var(--shadow-sm)',
-        transform: isGrowth ? 'scale(1.04)' : 'scale(1)',
-        transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-        zIndex: isGrowth ? 2 : 1,
-      }}
-    >
+    <motion.div style={{ perspective: '1200px', display: 'flex', zIndex: isGrowth ? 2 : 1 }}>
+      <motion.div
+        id={plan.id}
+        initial={{ opacity: 0, y: 32 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.12, type: 'spring', stiffness: 100 }}
+        viewport={{ once: true }}
+        whileHover={{ scale: isGrowth ? 1.06 : 1.02, rotateY: index === 0 ? 5 : index === 2 ? -5 : 0, rotateX: 2 }}
+        style={{
+          padding: '32px 28px',
+          display: 'flex', flexDirection: 'column',
+          position: 'relative',
+          border: isGrowth ? '1px solid rgba(109,74,255,0.8)' : '1px solid var(--border)',
+          boxShadow: isGrowth ? '0 0 40px rgba(109,74,255,0.3), 0 8px 32px rgba(0,0,0,0.08)' : 'var(--shadow-sm)',
+          transform: isGrowth ? 'scale(1.04)' : 'scale(1)',
+          transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+          flex: 1,
+          transformStyle: 'preserve-3d',
+        }}
+        className="glass-panel"
+      >
       {/* Most Popular badge */}
       {plan.badge && (
         <div style={{
@@ -125,6 +125,7 @@ const PricingCard = ({ plan, index }) => {
           <FeatureRow key={i} text={f.text} included={f.included} />
         ))}
       </ul>
+      </motion.div>
     </motion.div>
   );
 };

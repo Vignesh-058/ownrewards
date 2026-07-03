@@ -56,7 +56,7 @@ export const Navbar = () => {
         }}
         aria-label="Main Navigation"
       >
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 24px', height: '72px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 24px', height: '60px' }}>
           <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }} aria-label="OwnRewards Home">
             <Logo size={28} />
           </Link>
@@ -100,7 +100,7 @@ export const Navbar = () => {
             <div className="desktop-only">
               <Link to="/login" style={{ textDecoration: 'none', color: 'var(--text)', fontWeight: 600, fontSize: '15px', marginRight: '16px' }}>Sign In</Link>
               <Link to="/register" style={{ textDecoration: 'none' }}>
-                <Button variant="primary" style={{ padding: '10px 24px', fontSize: '15px' }}>Start Free &rarr;</Button>
+                <Button variant="primary" style={{ padding: '8px 20px', fontSize: '14px' }}>Start Free &rarr;</Button>
               </Link>
             </div>
             

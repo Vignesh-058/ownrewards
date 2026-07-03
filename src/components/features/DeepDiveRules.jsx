@@ -69,28 +69,34 @@ const DeepDiveRules = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            style={{ perspective: '1000px' }}
           >
-            <GlassCard hoverEffect={false} style={{ padding: '32px' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <div style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>Win-Back Automation</div>
+            <motion.div
+              whileHover={{ rotateY: -4, rotateX: 2, scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+              style={{ transformStyle: 'preserve-3d' }}
+              className="glass-panel"
+            >
+              <div style={{ padding: '40px', display: 'flex', flexDirection: 'column', gap: '20px', transform: 'translateZ(30px)' }}>
+                <div style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '8px' }}>Win-Back Automation</div>
                 
-                <div style={{ background: 'var(--surface)', padding: '16px', borderRadius: '8px', borderLeft: '4px solid var(--primary)' }}>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--primary)', marginBottom: '8px' }}>TRIGGER (WHEN)</div>
-                  <div style={{ fontSize: '1rem' }}><strong>inactivity_detected</strong> &gt; 45 days</div>
+                <div style={{ background: 'rgba(255,255,255,0.4)', padding: '20px', borderRadius: '12px', borderLeft: '4px solid var(--primary)', transform: 'translateZ(10px)', transition: 'transform 0.3s' }}>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--primary)', marginBottom: '8px', letterSpacing: '0.05em' }}>TRIGGER (WHEN)</div>
+                  <div style={{ fontSize: '1.125rem' }}><strong>inactivity_detected</strong> &gt; 45 days</div>
                 </div>
                 
-                <div style={{ background: 'var(--surface)', padding: '16px', borderRadius: '8px', borderLeft: '4px solid #F59E0B' }}>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#F59E0B', marginBottom: '8px' }}>CONDITION (AND)</div>
-                  <div style={{ fontSize: '1rem' }}><strong>customer_tier</strong> is [Gold, Platinum]</div>
+                <div style={{ background: 'rgba(245,158,11,0.05)', padding: '20px', borderRadius: '12px', borderLeft: '4px solid #F59E0B', transform: 'translateZ(20px)', transition: 'transform 0.3s' }}>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#F59E0B', marginBottom: '8px', letterSpacing: '0.05em' }}>CONDITION (AND)</div>
+                  <div style={{ fontSize: '1.125rem' }}><strong>customer_tier</strong> is [Gold, Platinum]</div>
                 </div>
                 
-                <div style={{ background: 'var(--surface)', padding: '16px', borderRadius: '8px', borderLeft: '4px solid #10B981' }}>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#10B981', marginBottom: '8px' }}>ACTION (THEN)</div>
-                  <div style={{ fontSize: '1rem', marginBottom: '8px' }}>Issue Coupon: <strong>COMEBACK30</strong></div>
-                  <div style={{ fontSize: '0.875rem', color: 'var(--muted)' }}>+ Send WhatsApp message template</div>
+                <div style={{ background: 'rgba(16,185,129,0.05)', padding: '20px', borderRadius: '12px', borderLeft: '4px solid #10B981', transform: 'translateZ(30px)', transition: 'transform 0.3s' }}>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#10B981', marginBottom: '8px', letterSpacing: '0.05em' }}>ACTION (THEN)</div>
+                  <div style={{ fontSize: '1.125rem', marginBottom: '8px' }}>Issue Coupon: <strong>COMEBACK30</strong></div>
+                  <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>+ Send WhatsApp message template</div>
                 </div>
               </div>
-            </GlassCard>
+            </motion.div>
           </motion.div>
 
         </div>

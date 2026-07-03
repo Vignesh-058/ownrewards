@@ -1,36 +1,47 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { CheckCircle, TrendingUp } from 'lucide-react';
 
 const Testimonials = () => {
   const testimonials = [
     {
       quote: "ownRewards' birthday automation brought back 34% of churned customers in just 90 days. Nothing else we tried came close.",
-      attribution: "— Marketing Head, QSR Chain (6 outlets)"
+      name: "Arjun Mehta",
+      role: "Marketing Head",
+      company: "QSR Chain",
+      metric: "+34% Reactivation",
+      image: "https://i.pravatar.cc/150?u=a042581f4e29026704d"
     },
     {
-      quote: "The rule engine replaced 3 different tools we were using. Our entire loyalty, campaign, and notification stack is now one system.",
-      attribution: "— Head of CX, Retail Brand"
+      quote: "Our referral program generated ₹4.2L in new customer revenue in the first month. Setup took exactly one afternoon.",
+      name: "Priya Sharma",
+      role: "Founder",
+      company: "D2C Brand",
+      metric: "₹4.2L Revenue",
+      image: "https://i.pravatar.cc/150?u=a042581f4e29026024d"
     },
     {
-      quote: "Our referral program generated ₹4.2L in new customer revenue in the first month. Setup took one afternoon.",
-      attribution: "— Founder, D2C Brand"
-    },
-    {
-      quote: "Finally, a platform that doesn't just collect points but actually segments our customers intelligently. We've cut promotional waste by 40%.",
-      attribution: "— CMO, Fashion Retailer"
-    },
-    {
-      quote: "The Petpooja integration is flawless. Zero extra steps for our cashiers, yet every customer gets their points instantly.",
-      attribution: "— Operations Manager, Cafe Network"
+      quote: "Finally, a platform that doesn't just collect points but actually segments our customers intelligently. We've cut promotional waste entirely.",
+      name: "Rohan Desai",
+      role: "CMO",
+      company: "Fashion Retailer",
+      metric: "-40% Promo Waste",
+      image: "https://i.pravatar.cc/150?u=a04258114e29026702d"
     }
   ];
 
   return (
-    <section className="testimonials relative overflow-hidden" id="testimonials" style={{ padding: '80px 0' }}>
+    <section className="testimonials relative overflow-hidden" id="testimonials" style={{ padding: '140px 0', background: 'var(--background)' }}>
       <div className="container relative z-10">
-        <h2 className="headline text-center mb-16" style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>Trusted by businesses across India</h2>
         
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+        <div className="section-header text-center mb-16" style={{ marginBottom: '80px' }}>
+          <h2 className="h-section" style={{ marginBottom: '16px' }}>Trusted by forward-thinking brands.</h2>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '20px', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>
+            See how top companies are using ownRewards to drive real, measurable revenue growth.
+          </p>
+        </div>
+        
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '32px' }}>
           {testimonials.map((t, index) => (
             <motion.div
               key={index}
@@ -38,31 +49,47 @@ const Testimonials = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.15, type: 'spring', stiffness: 100 }}
               viewport={{ once: true, margin: "-50px" }}
-              style={{ breakInside: 'avoid' }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="glass-panel"
+              style={{ 
+                padding: '40px', 
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                position: 'relative',
+                overflow: 'hidden'
+              }}
             >
-              <div 
-                className="glass-panel"
-                style={{ 
-                  padding: '32px', 
-                  borderLeft: '4px solid var(--primary)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between'
-                }}>
-                <p style={{ color: 'var(--text)', fontSize: '1.125rem', lineHeight: '1.6', marginBottom: '24px', fontStyle: 'italic' }}>
-                  "{t.quote}"
-                </p>
-                <div style={{ color: 'var(--muted)', fontSize: '0.875rem', fontWeight: '600' }}>
-                  {t.attribution}
+              {/* Top Metric Badge */}
+              <div style={{ display: 'flex', marginBottom: '24px' }}>
+                <div style={{ background: 'var(--lavender)', color: 'var(--primary)', padding: '6px 12px', borderRadius: '8px', fontSize: '13px', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <TrendingUp size={16} />
+                  {t.metric}
+                </div>
+              </div>
+
+              {/* Quote */}
+              <p style={{ color: 'var(--text)', fontSize: '18px', lineHeight: '1.6', marginBottom: '40px', fontWeight: 500, letterSpacing: '-0.01em' }}>
+                "{t.quote}"
+              </p>
+
+              {/* Author */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <img src={t.image} alt={t.name} style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--border)' }} />
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: '15px', color: 'var(--text)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    {t.name}
+                    <CheckCircle size={14} color="var(--success)" />
+                  </div>
+                  <div style={{ color: 'var(--text-secondary)', fontSize: '13px', fontWeight: 500 }}>
+                    {t.role}, {t.company}
+                  </div>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
-      
-      {/* Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[500px] bg-primary opacity-10 blur-[150px] rounded-[100%] pointer-events-none -z-10" />
     </section>
   );
 };

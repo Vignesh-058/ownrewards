@@ -92,6 +92,7 @@ const SegmentsDeepDive = () => {
           gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
           gap: '24px',
           marginBottom: '48px',
+          perspective: '1000px'
         }}>
           {metrics.map((m, i) => (
             <motion.div
@@ -100,18 +101,28 @@ const SegmentsDeepDive = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.15, type: 'spring', stiffness: 100 }}
               viewport={{ once: true }}
-              whileHover={{ y: -6 }}
+              whileHover={{ rotateY: 5, rotateX: -5, scale: 1.05 }}
               style={{
-                background: 'rgba(255,255,255,0.04)',
-                border: `1px solid ${m.color}33`,
-                borderRadius: '20px',
-                padding: '28px',
-                transition: 'box-shadow 0.3s ease',
+                background: 'rgba(255,255,255,0.03)',
+                border: `1px solid ${m.color}44`,
+                borderRadius: '24px',
+                padding: '32px',
+                transition: 'box-shadow 0.3s ease, border-color 0.3s ease',
                 cursor: 'default',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                transformStyle: 'preserve-3d'
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.boxShadow = `0 12px 40px ${m.color}22`; }}
-              onMouseLeave={(e) => { e.currentTarget.style.boxShadow = 'none'; }}
+              onMouseEnter={(e) => { 
+                e.currentTarget.style.boxShadow = `0 20px 60px ${m.color}33`; 
+                e.currentTarget.style.borderColor = `${m.color}88`;
+              }}
+              onMouseLeave={(e) => { 
+                e.currentTarget.style.boxShadow = 'none'; 
+                e.currentTarget.style.borderColor = `${m.color}44`;
+              }}
             >
+              <div style={{ transform: 'translateZ(20px)' }}>
               <div style={{ fontSize: '2rem', marginBottom: '16px' }} aria-hidden="true">{m.icon}</div>
               <div style={{ fontSize: '1.875rem', fontWeight: 800, color: m.color, marginBottom: '4px', lineHeight: 1 }}>{m.value}</div>
               <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)', marginBottom: '14px' }}>{m.unit}</div>
@@ -127,6 +138,7 @@ const SegmentsDeepDive = () => {
                   viewport={{ once: true }}
                   style={{ height: '100%', background: m.color, borderRadius: '2px' }}
                 />
+              </div>
               </div>
             </motion.div>
           ))}

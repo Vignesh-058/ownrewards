@@ -22,11 +22,13 @@ const MiniBar = ({ pct, color = 'var(--primary)' }) => (
 );
 
 const DashCard = ({ children, style }) => (
-  <div style={{
-    background: 'var(--surface)', border: '1px solid var(--border)',
-    borderRadius: '12px', padding: '16px',
-    ...style,
-  }}>
+  <div 
+    className="glass-panel"
+    style={{
+      padding: '16px',
+      ...style,
+    }}
+  >
     {children}
   </div>
 );

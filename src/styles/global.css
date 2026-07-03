@@ -2,26 +2,27 @@
 @import "tailwindcss";
 
 :root {
-  /* Premium Brand Colors */
-  --primary: #7C5CFF;
-  --secondary: #A855F7;
-  --accent: #E879F9;
-  --sky: #E0F2FE;
-  --pink: #FDF4FF;
+  /* Premium Brand Colors (Soft & Modern) */
+  --primary: #8B5CF6; /* Soft Violet */
+  --secondary: #A78BFA; /* Soft Purple */
+  --accent: #F472B6; /* Soft Pink */
+  --sky: #BAE6FD; /* Light Sky Blue */
+  --lavender: #E9D5FF; /* Soft Lavender */
+  --white: #FFFFFF;
   
   /* Layout Colors */
-  --background: #F8FAFC;
-  --surface: rgba(255, 255, 255, 0.70);
-  --border: rgba(255, 255, 255, 0.40);
+  --background: #FAFAFC; /* Off-white with a hint of cool gray */
+  --surface: rgba(255, 255, 255, 0.75);
+  --border: rgba(255, 255, 255, 0.60);
   
   /* Typography Colors */
-  --text: #111827;
-  --text-secondary: #6B7280;
+  --text: #1E293B; /* Deep Slate (Softer than pure black) */
+  --text-secondary: #64748B;
   
   /* Status Colors */
-  --success: #16A34A;
+  --success: #10B981;
   --warning: #F59E0B;
-  --danger: #EF4444;
+  --danger: #F43F5E;
 
   /* Typography Scale */
   --font-hero: clamp(3rem, 6vw, 72px);
@@ -43,10 +44,13 @@
   --radius-full: 9999px;
   
   /* Depth & Shadows */
-  --shadow-glass: 0 30px 60px rgba(90, 60, 255, 0.08);
-  --shadow-hover: 0 40px 80px rgba(90, 60, 255, 0.15);
-  --shadow-glow: 0 0 40px rgba(109, 74, 255, 0.3);
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-glass: 0 30px 60px rgba(139, 92, 246, 0.05);
+  --shadow-hover: 0 40px 80px rgba(139, 92, 246, 0.12);
+  --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.2);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+  
+  /* Transitions */
+  --transition-smooth: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -88,10 +92,10 @@ body {
   will-change: transform;
 }
 
-.blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #7C5CFF; animation-delay: 0s; }
-.blob-2 { bottom: -10%; left: 20%; width: 60vw; height: 60vw; background: #E879F9; animation-delay: -5s; }
-.blob-3 { top: 10%; right: -10%; width: 55vw; height: 55vw; background: #E0F2FE; animation-delay: -10s; }
-.blob-4 { top: 40%; left: 40%; width: 40vw; height: 40vw; background: #D8B4FE; opacity: 0.3; animation-delay: -15s; }
+.blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #E9D5FF; animation-delay: 0s; }
+.blob-2 { bottom: -10%; left: 20%; width: 60vw; height: 60vw; background: #BAE6FD; animation-delay: -5s; }
+.blob-3 { top: 10%; right: -10%; width: 55vw; height: 55vw; background: #FBCFE8; animation-delay: -10s; }
+.blob-4 { top: 40%; left: 40%; width: 40vw; height: 40vw; background: #DDD6FE; opacity: 0.4; animation-delay: -15s; }
 
 @keyframes floatBlobs {
   0% { transform: translate(0, 0) scale(1); }
@@ -114,13 +118,13 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow-glass);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: var(--transition-smooth);
 }
 
 .glass-panel:hover {
-  transform: translateY(-8px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
-  border-color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
 /* Typography Classes */
@@ -165,12 +169,12 @@ body {
 .btn-primary {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
-  box-shadow: 0 8px 24px rgba(109, 74, 255, 0.25);
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 12px 32px rgba(109, 74, 255, 0.4);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(139, 92, 246, 0.3);
 }
 
 .btn-secondary {

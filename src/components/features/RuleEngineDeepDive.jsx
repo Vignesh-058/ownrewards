@@ -108,18 +108,20 @@ const RuleEngineDeepDive = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
             viewport={{ once: true }}
+            style={{ perspective: '1000px' }}
           >
             {/* Automation Flow Card */}
-            <div style={{
-              background: 'var(--bg)', border: '1px solid var(--border)',
-              borderRadius: '20px', padding: '28px',
-              boxShadow: '0 8px 32px rgba(99,102,241,0.08)',
-            }}>
-              <div style={{ fontWeight: 700, fontSize: '0.9375rem', marginBottom: '24px', color: 'var(--text)' }}>
+            <motion.div 
+              whileHover={{ rotateY: -4, rotateX: 2, scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+              style={{ transformStyle: 'preserve-3d', padding: '32px' }}
+              className="glass-panel"
+            >
+              <div style={{ fontWeight: 800, fontSize: '1.25rem', marginBottom: '24px', color: 'var(--text)', transform: 'translateZ(30px)' }}>
                 ⚡ Automation Flow
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', transform: 'translateZ(20px)' }}>
                 {flowSteps.map((step, i) => (
                   <React.Fragment key={step.label}>
                     <motion.div
@@ -155,13 +157,14 @@ const RuleEngineDeepDive = () => {
 
               {/* Example Rule */}
               <div style={{
-                marginTop: '24px', padding: '16px', borderRadius: '12px',
+                marginTop: '24px', padding: '20px', borderRadius: '12px',
                 background: 'rgba(99,102,241,0.06)', border: '1px solid rgba(99,102,241,0.15)',
+                transform: 'translateZ(40px)', transition: 'transform 0.3s'
               }}>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '10px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--primary)', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                   Live Example
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {[
                     ['Trigger', 'customer_birthday'],
                     ['Award', '+500 bonus points'],
@@ -169,14 +172,14 @@ const RuleEngineDeepDive = () => {
                     ['Notify', 'WhatsApp message'],
                     ['Limit', '1× per customer/year'],
                   ].map(([label, val]) => (
-                    <div key={label} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8125rem' }}>
-                      <span style={{ color: 'var(--muted)' }}>{label}</span>
+                    <div key={label} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem' }}>
+                      <span style={{ color: 'var(--text-secondary)' }}>{label}</span>
                       <span style={{ color: 'var(--text)', fontWeight: 600 }}>{val}</span>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
