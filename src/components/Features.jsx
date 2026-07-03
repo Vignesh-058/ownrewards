@@ -2,7 +2,7 @@ import React from 'react';
 import { Gift, Zap, Users, PieChart } from 'lucide-react';
 import { motion } from 'framer-motion';
 import GlassCard from './GlassCard';
-import './Features.css';
+
 
 const Features = () => {
   const featureList = [

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Terminal } from 'lucide-react';
 import { motion } from 'framer-motion';
-import './DeveloperSection.css';
-import Button from './Button';
+
+import { Button } from './ui/Button';
 
 const codeString = `// Award points for an order
 const response = await fetch('https://api.ownrewards.io/v1/rewards', {
@@ -98,3 +98,4 @@ const DeveloperSection = () => {
 };
 
 export default DeveloperSection;
+

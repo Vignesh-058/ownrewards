@@ -1,5 +1,5 @@
 import React from 'react';
-import './GlassCard.css';
+
 import { motion } from 'framer-motion';
 
 const GlassCard = ({ children, className = '', hoverEffect = true, ...props }) => {

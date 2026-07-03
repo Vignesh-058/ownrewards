@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, User, ArrowRight, CheckCircle2 } from 'lucide-react';
-import Button from '../components/Button';
-import Logo from '../components/Logo';
-import './Auth.css';
+import { Button } from '../components/ui/Button';
+import Logo from '../components/ui/Logo';
+
 
 const Register = () => {
   const navigate = useNavigate();

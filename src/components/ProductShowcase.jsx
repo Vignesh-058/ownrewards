@@ -1,128 +1,174 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { CheckCircle2, TrendingUp, BellRing } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import GlassCard from './GlassCard';
-import './ProductShowcase.css';
 
-const ProductShowcase = () => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
+const FeatureTabs = () => {
+  const [activeTab, setActiveTab] = useState('loyalty');
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [50, -50]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [-50, 50]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const tabs = [
+    { id: 'loyalty', label: 'Loyalty Dashboard' },
+    { id: 'rules', label: 'Rule Engine' },
+    { id: 'coupons', label: 'Smart Coupons' },
+    { id: 'referral', label: 'Referral Program' },
+    { id: 'analytics', label: 'Analytics' }
+  ];
 
-  return (
-    <section className="product-showcase relative" id="solutions" ref={containerRef}>
-      <div className="container relative z-10">
-        
-        {/* Row 1 */}
-        <div className="showcase-row">
-          <div className="showcase-content">
-            <h2 className="showcase-title">Powerful Analytics at your fingertips</h2>
-            <p className="showcase-description">
-              Make data-driven decisions with real-time insights into customer behavior, reward redemptions, and program ROI. Our beautiful dashboards make complex data easy to understand.
-            </p>
-            <ul className="showcase-list">
-              <li><CheckCircle2 className="text-primary" size={20} /> Real-time liability tracking</li>
-              <li><CheckCircle2 className="text-primary" size={20} /> Customer segmentation</li>
-              <li><CheckCircle2 className="text-primary" size={20} /> Exportable financial reports</li>
-            </ul>
+  const panels = {
+    loyalty: {
+      caption: "Customer wallet showing tier badge, point balance, progress to next tier, and recent activity.",
+      mock: (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div>
+              <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>12,450 pts</div>
+              <div style={{ color: 'var(--muted)', fontSize: '0.875rem' }}>Lifetime balance</div>
+            </div>
+            <div style={{ background: 'rgba(245, 158, 11, 0.2)', color: '#F59E0B', padding: '4px 12px', borderRadius: '16px', fontWeight: 'bold' }}>Gold Tier</div>
           </div>
-          
-          <div className="showcase-visual perspective-1000">
-            <div className="visual-background-circle"></div>
-            <motion.div style={{ y: y1 }} whileHover={{ rotateX: 2, rotateY: -5, scale: 1.02 }} className="transform-style-3d">
-              <GlassCard className="main-mockup shadow-2xl" hoverEffect={false}>
-                <div className="mockup-header">
-                  <h3>Revenue Impact</h3>
-                  <span className="badge-growth">+24.5%</span>
-                </div>
-                <div className="mockup-chart-large">
-                  <svg viewBox="0 0 400 150" className="area-chart">
-                    <defs>
-                      <linearGradient id="gradientPrimary" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="var(--primary)" stopOpacity="0.3"/>
-                        <stop offset="95%" stopColor="var(--primary)" stopOpacity="0"/>
-                      </linearGradient>
-                    </defs>
-                    <path d="M0 150 L0 100 Q 50 120, 100 80 T 200 60 T 300 40 T 400 20 L400 150 Z" fill="url(#gradientPrimary)" />
-                    <path d="M0 100 Q 50 120, 100 80 T 200 60 T 300 40 T 400 20" fill="none" stroke="var(--primary)" strokeWidth="4" />
-                  </svg>
-                </div>
-              </GlassCard>
-            </motion.div>
-            
-            <motion.div 
-              className="floating-card float-left"
-              style={{ y: y3 }}
-            >
-              <GlassCard hoverEffect={false} className="mini-stat-card shadow-xl border-t border-white/20">
-                <div className="mini-icon"><TrendingUp size={16} /></div>
-                <div>
-                  <div className="mini-label">LTV Increase</div>
-                  <div className="mini-value">$42.50</div>
-                </div>
-              </GlassCard>
-            </motion.div>
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.875rem' }}>
+              <span>2,550 pts to Platinum</span>
+              <span>83%</span>
+            </div>
+            <div style={{ height: '8px', background: 'var(--surface)', borderRadius: '4px', overflow: 'hidden' }}>
+              <div style={{ width: '83%', height: '100%', background: 'linear-gradient(90deg, #F59E0B, #E2E8F0)' }}></div>
+            </div>
           </div>
         </div>
-
-        {/* Row 2 */}
-        <div className="showcase-row reverse">
-          <div className="showcase-content">
-            <h2 className="showcase-title">Automated Engagement Campaigns</h2>
-            <p className="showcase-description">
-              Set it and forget it. Trigger personalized emails, SMS, or WhatsApp messages based on customer milestones, point balances, or inactivity periods.
-            </p>
-            <ul className="showcase-list">
-              <li><CheckCircle2 className="text-primary" size={20} /> Birthday & Anniversary rewards</li>
-              <li><CheckCircle2 className="text-primary" size={20} /> Win-back campaigns</li>
-              <li><CheckCircle2 className="text-primary" size={20} /> Tier upgrade notifications</li>
-            </ul>
+      )
+    },
+    rules: {
+      caption: "A birthday rule automatically awards 500 bonus points and issues a BDAY20 coupon — no manual work.",
+      mock: (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div style={{ fontSize: '1.125rem', fontWeight: 'bold' }}>Birthday Automation</div>
+          <div style={{ background: 'var(--surface)', padding: '12px', borderRadius: '8px', borderLeft: '3px solid var(--primary)' }}>
+            <strong>IF</strong> Customer Birthday is Today
           </div>
-          
-          <div className="showcase-visual perspective-1000">
-            <div className="visual-background-circle secondary"></div>
-            <motion.div style={{ y: y2 }} whileHover={{ rotateX: -2, rotateY: 5, scale: 1.02 }} className="transform-style-3d">
-              <GlassCard className="main-mockup workflow-mockup shadow-2xl" hoverEffect={false}>
-                <div className="workflow-step">
-                  <div className="step-icon">1</div>
-                  <div className="step-content">
-                    <h4>Customer spends $100</h4>
-                    <p>Trigger event detected</p>
-                  </div>
+          <div style={{ background: 'var(--surface)', padding: '12px', borderRadius: '8px', borderLeft: '3px solid #10B981' }}>
+            <strong>THEN</strong> Award 500 Points
+          </div>
+          <div style={{ background: 'var(--surface)', padding: '12px', borderRadius: '8px', borderLeft: '3px solid #10B981' }}>
+            <strong>AND</strong> Issue Coupon: BDAY20
+          </div>
+        </div>
+      )
+    },
+    coupons: {
+      caption: "Smart coupons with category-specific applicability, usage tracking, and rule-gated eligibility.",
+      mock: (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2))', padding: '24px', borderRadius: '12px', border: '1px dashed var(--primary)', textAlign: 'center' }}>
+            <div style={{ fontSize: '2rem', fontWeight: '900', letterSpacing: '2px', color: 'var(--text)' }}>BDAY20</div>
+            <div style={{ color: 'var(--muted)', marginTop: '8px' }}>20% OFF Entire Bill</div>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem' }}>
+            <span style={{ color: 'var(--muted)' }}>Valid for 7 days</span>
+            <span style={{ color: '#10B981', fontWeight: 'bold' }}>Active</span>
+          </div>
+        </div>
+      )
+    },
+    referral: {
+      caption: "Both the referrer and the new customer get independent, configurable rewards.",
+      mock: (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+            <div style={{ fontSize: '1.125rem', fontWeight: 'bold' }}>Give 20%, Get 500 pts</div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: '16px', alignItems: 'center' }}>
+            <div style={{ background: 'var(--surface)', padding: '16px', borderRadius: '8px', textAlign: 'center' }}>
+              <div style={{ fontSize: '1.5rem' }}>🎁</div>
+              <div style={{ fontSize: '0.875rem', marginTop: '8px' }}>Referrer gets 500 pts</div>
+            </div>
+            <div style={{ color: 'var(--muted)' }}>+</div>
+            <div style={{ background: 'var(--surface)', padding: '16px', borderRadius: '8px', textAlign: 'center' }}>
+              <div style={{ fontSize: '1.5rem' }}>🎟️</div>
+              <div style={{ fontSize: '0.875rem', marginTop: '8px' }}>Friend gets 20% Off</div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    analytics: {
+      caption: "Real-time cohort retention, reward ROI, and tier distribution — all filterable by date and outlet.",
+      mock: (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            <div style={{ background: 'var(--surface)', padding: '12px', borderRadius: '8px' }}>
+              <div style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Reward ROI</div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#10B981' }}>4.2x</div>
+            </div>
+            <div style={{ background: 'var(--surface)', padding: '12px', borderRadius: '8px' }}>
+              <div style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Retention Rate</div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>64%</div>
+            </div>
+          </div>
+          <div style={{ height: '120px', background: 'var(--surface)', borderRadius: '8px', position: 'relative', overflow: 'hidden' }}>
+             <div style={{ position: 'absolute', bottom: 0, left: '10%', width: '15%', height: '40%', background: 'var(--primary)' }}></div>
+             <div style={{ position: 'absolute', bottom: 0, left: '30%', width: '15%', height: '60%', background: 'var(--primary)' }}></div>
+             <div style={{ position: 'absolute', bottom: 0, left: '50%', width: '15%', height: '50%', background: 'var(--primary)' }}></div>
+             <div style={{ position: 'absolute', bottom: 0, left: '70%', width: '15%', height: '90%', background: '#10B981' }}></div>
+          </div>
+        </div>
+      )
+    }
+  };
+
+  return (
+    <section className="feature-tabs-section relative overflow-hidden" id="feature-tabs" style={{ padding: '80px 0' }}>
+      <div className="container relative z-10">
+        <div className="section-header text-center mb-12">
+          <h2 className="headline" style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>See ownRewards in action</h2>
+        </div>
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '12px', marginBottom: '40px' }}>
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              style={{
+                padding: '12px 24px',
+                borderRadius: '30px',
+                border: activeTab === tab.id ? '1px solid var(--primary)' : '1px solid var(--border)',
+                background: activeTab === tab.id ? 'rgba(99, 102, 241, 0.1)' : 'transparent',
+                color: activeTab === tab.id ? 'var(--primary)' : 'var(--text)',
+                fontWeight: activeTab === tab.id ? '600' : '400',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        <div style={{ maxWidth: '800px', margin: '0 auto', minHeight: '350px' }}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <GlassCard hoverEffect={false} style={{ padding: '40px' }}>
+                <div style={{ marginBottom: '32px' }}>
+                  {panels[activeTab].mock}
                 </div>
-                <div className="workflow-connector"></div>
-                <div className="workflow-step">
-                  <div className="step-icon">2</div>
-                  <div className="step-content">
-                    <h4>Award 100 Points</h4>
-                    <p>Rule: 1 point per $1</p>
-                  </div>
-                </div>
-                <div className="workflow-connector"></div>
-                <div className="workflow-step highlight">
-                  <div className="step-icon">3</div>
-                  <div className="step-content">
-                    <h4>Send WhatsApp Alert</h4>
-                    <p>"You've unlocked Gold Tier!"</p>
-                  </div>
+                <div style={{ borderTop: '1px solid var(--border)', paddingTop: '20px', color: 'var(--muted)', textAlign: 'center', fontStyle: 'italic' }}>
+                  "{panels[activeTab].caption}"
                 </div>
               </GlassCard>
             </motion.div>
-
-
-
-          </div>
+          </AnimatePresence>
         </div>
 
       </div>
+      
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-primary opacity-5 blur-[150px] rounded-[100%] pointer-events-none -z-10" />
     </section>
   );
 };
 
-export default ProductShowcase;
+export default FeatureTabs;

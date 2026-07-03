@@ -1,35 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import CursorGlow from '../components/CursorGlow';
-import ScrollProgress from '../components/ScrollProgress';
-import BackToTop from '../components/BackToTop';
+import { Navbar } from '../components/layout/Navbar';
+import { Footer } from '../components/layout/Footer';
+import FinalCTA from '../components/FinalCTA';
 
-const MainLayout = () => {
-  const location = useLocation();
-  
+export const MainLayout = () => {
+  const { pathname } = useLocation();
+
+  // Scroll restoration
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
+
   return (
-    <div className="landing-page">
-      <CursorGlow />
-      <ScrollProgress />
-      <Navbar />
-      <AnimatePresence mode="wait">
-        <motion.main 
-          key={location.pathname}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3 }}
-        >
+    <>
+      {/* Premium Background Mesh Container */}
+      <div className="mesh-bg" aria-hidden="true">
+        <div className="mesh-blob blob-1"></div>
+        <div className="mesh-blob blob-2"></div>
+        <div className="mesh-blob blob-3"></div>
+        <div className="mesh-blob blob-4"></div>
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative', zIndex: 1 }}>
+        <Navbar />
+        <main style={{ flex: 1, display: 'flex', flexDirection: 'column', paddingTop: '100px' }}>
           <Outlet />
-        </motion.main>
-      </AnimatePresence>
-      <Footer />
-      <BackToTop />
-    </div>
+        </main>
+        <FinalCTA />
+        <Footer />
+      </div>
+    </>
   );
 };
-
-export default MainLayout;

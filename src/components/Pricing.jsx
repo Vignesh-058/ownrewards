@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Button from './Button';
-import './Pricing.css';
+import { Button } from './ui/Button';
+
 
 const Pricing = () => {
   const [isAnnual, setIsAnnual] = useState(false);
@@ -168,3 +168,4 @@ const Pricing = () => {
 };
 
 export default Pricing;
+

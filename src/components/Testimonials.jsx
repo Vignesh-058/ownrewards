@@ -1,88 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import GlassCard from './GlassCard';
-import './Testimonials.css';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const Testimonials = () => {
   const testimonials = [
     {
-      name: "Sarah Jenkins",
-      role: "Marketing Director",
-      company: "Brew & Co.",
-      content: "OwnRewards completely transformed our customer retention. The automated WhatsApp campaigns have a 45% conversion rate. It's almost like magic.",
-      rating: 5,
-      avatar: "https://i.pravatar.cc/150?img=47"
+      quote: "ownRewards' birthday automation brought back 34% of churned customers in just 90 days. Nothing else we tried came close.",
+      attribution: "— Marketing Head, QSR Chain (6 outlets)"
     },
     {
-      name: "David Chen",
-      role: "Founder",
-      company: "Peak Athletics",
-      content: "The API-first approach allowed us to integrate the loyalty program seamlessly into our custom headless Shopify build in just a few days.",
-      rating: 5,
-      avatar: "https://i.pravatar.cc/150?img=11"
+      quote: "The rule engine replaced 3 different tools we were using. Our entire loyalty, campaign, and notification stack is now one system.",
+      attribution: "— Head of CX, Retail Brand"
     },
     {
-      name: "Emily Rodriguez",
-      role: "Operations Manager",
-      company: "Urban Greens",
-      content: "We've seen a 30% increase in repeat purchases since launching our VIP tiers. The dashboard makes it incredibly easy to track our ROI.",
-      rating: 5,
-      avatar: "https://i.pravatar.cc/150?img=5"
+      quote: "Our referral program generated ₹4.2L in new customer revenue in the first month. Setup took one afternoon.",
+      attribution: "— Founder, D2C Brand"
+    },
+    {
+      quote: "Finally, a platform that doesn't just collect points but actually segments our customers intelligently. We've cut promotional waste by 40%.",
+      attribution: "— CMO, Fashion Retailer"
+    },
+    {
+      quote: "The Petpooja integration is flawless. Zero extra steps for our cashiers, yet every customer gets their points instantly.",
+      attribution: "— Operations Manager, Cafe Network"
     }
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const next = () => setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  const prev = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-
-  useEffect(() => {
-    const timer = setInterval(next, 8000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
-    <section className="testimonials relative overflow-hidden">
+    <section className="testimonials relative overflow-hidden" id="testimonials" style={{ padding: '80px 0' }}>
       <div className="container relative z-10">
-        <h2 className="section-title text-center mb-8">Loved by <span className="gradient-text">thousands</span></h2>
+        <h2 className="headline text-center mb-16" style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>Trusted by businesses across India</h2>
         
-        <div className="carousel-container max-w-4xl mx-auto relative mt-12">
-          <AnimatePresence mode="wait">
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+          {testimonials.map((t, index) => (
             <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.15, type: 'spring', stiffness: 100 }}
+              viewport={{ once: true, margin: "-50px" }}
+              style={{ breakInside: 'avoid' }}
             >
-              <GlassCard className="testimonial-card">
-                <div className="rating">
-                  {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                    <Star key={i} size={20} fill="var(--primary)" color="var(--primary)" />
-                  ))}
+              <div 
+                className="glass-panel"
+                style={{ 
+                  padding: '32px', 
+                  borderLeft: '4px solid var(--primary)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between'
+                }}>
+                <p style={{ color: 'var(--text)', fontSize: '1.125rem', lineHeight: '1.6', marginBottom: '24px', fontStyle: 'italic' }}>
+                  "{t.quote}"
+                </p>
+                <div style={{ color: 'var(--muted)', fontSize: '0.875rem', fontWeight: '600' }}>
+                  {t.attribution}
                 </div>
-                <p className="testimonial-content">"{testimonials[currentIndex].content}"</p>
-                <div className="testimonial-author">
-                  <img src={testimonials[currentIndex].avatar} alt={testimonials[currentIndex].name} className="author-avatar" />
-                  <div className="author-info">
-                    <div className="author-name">{testimonials[currentIndex].name}</div>
-                    <div className="author-role">{testimonials[currentIndex].role}, {testimonials[currentIndex].company}</div>
-                  </div>
-                </div>
-              </GlassCard>
+              </div>
             </motion.div>
-          </AnimatePresence>
-          
-          <div className="carousel-controls mt-8 flex justify-center gap-4">
-            <button onClick={prev} className="btn-icon carousel-btn hover-lift"><ChevronLeft size={24} /></button>
-            <div className="flex gap-2 items-center">
-              {testimonials.map((_, i) => (
-                <div key={i} className={`dot-indicator ${i === currentIndex ? 'active' : ''}`} />
-              ))}
-            </div>
-            <button onClick={next} className="btn-icon carousel-btn hover-lift"><ChevronRight size={24} /></button>
-          </div>
+          ))}
         </div>
       </div>
       

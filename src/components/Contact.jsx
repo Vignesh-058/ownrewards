@@ -1,9 +1,9 @@
 import React from 'react';
 import { Mail, MapPin, Phone, Clock, MessageCircle, Briefcase, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
-import Button from './Button';
+import { Button } from './ui/Button';
 import GlassCard from './GlassCard';
-import './Contact.css';
+
 
 const Contact = () => {
   return (
@@ -139,3 +139,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

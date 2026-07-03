@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check, Minus, Info } from 'lucide-react';
-import './PricingComparison.css';
+
 
 const PricingComparison = () => {
   const features = [
