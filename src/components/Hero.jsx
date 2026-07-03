@@ -19,13 +19,12 @@ const Hero = () => {
       id="hero" 
       ref={containerRef}
       style={{
-        minHeight: '80vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
-        paddingTop: '120px',
+        paddingTop: '160px',
         paddingBottom: '80px'
       }}
     >
